@@ -1,4 +1,11 @@
-tage ('Build Docker Image'){
+def dockerRun ='docker run -p 8080:8080 -d --name java-test namiducker/java-test:2.0.0 .'
+pipeline {
+    
+    agent any //{
+        //dockerfile true
+    //}
+    stages {
+        stage ('Build Docker Image'){
             steps {
                 sh 'docker build -t namiducker/java-test:2.0.0 .'
             }
@@ -12,3 +19,5 @@ tage ('Build Docker Image'){
                 }
                 sh 'docker push namiducker/java-test:2.0.0'
             }
+        }
+    }
